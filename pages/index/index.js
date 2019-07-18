@@ -8,32 +8,53 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    num: 0,
+    num: -1,
     content: '干垃圾',
     message: [
       {
         id: '0',
-        text: "干垃圾"
+        text: "干垃圾",
+        typeStyle: "hotStyle"
       },
       {
         id: '1',
-        text: '可回收物'
+        text: '可回收物',
+        typeStyle: "circleStyle"
       },
       {
         id: '2',
-        text: '湿垃圾'
+        text: '湿垃圾',
+        typeStyle: "weatStyle"
+
       },
       {
         id: '3',
-        text: '有害垃圾'
+        text: '有害垃圾',
+        typeStyle: "harmfulStyle"
       }, {
         id: '4',
-        text: '大件垃圾'
+        text: '大件垃圾',
+        typeStyle: "bigStyle"
       }, {
         id: '5',
-        text: '建筑垃圾'
+        text: '建筑垃圾',
+        typeStyle: "buildStyle"
       }
       
+    ],
+    searchResult:[
+      {
+        order: 1,
+        name: '被丢弃的灯泡',
+        type: '有害垃圾',
+        typeStyle: 'harmfulStyle'
+      },
+      {
+        order: 2,
+        name: '塑料桶',
+        type: '可回收垃圾',
+        typeStyle: 'circleStyle'
+      }
     ]
   },
   clickList: function (e) {
@@ -44,7 +65,8 @@ Page({
     console.log(content.text)
     this.setData({
       num: num,
-      content: content
+      content: content,
+      searchResult: []
     })
     console.log(this)
   },
@@ -119,10 +141,23 @@ Page({
       inputVal: ""
     });
   },
-  inputTyping: function (e) {
+  searchGarbage: function (e) {
+
     this.setData({
-      inputVal: e.detail.value
-    });
+      num:-1
+    })
+    wx.request({
+      url: 'http://joneyancode.cn',
+      header: {
+        'content-type':'application/json'
+      },
+      data:{
+        'keyWord':e.detail.value
+      },
+      success(res){
+        console.log(res);
+      }
+    })
   }
 })
 // Page({

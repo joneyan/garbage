@@ -39,31 +39,55 @@ page{
 }
 
 .active0 {
-  color: red;
-  background-color: greenyellow;
+  color: greenyellow;
+  background-color: darkorange
 }
 
 .active1 {
-  color: red;
-  background-color: green;
+  color: green;
+  background-color: thistle
 }
 
 .active2 {
-  color: red;
-  background-color: wheat;
+  color: wheat;
+  background-color: slateblue
 }
 
 .active3 {
-  color: red;
-  background-color: darkorange;
+  color: darkorange;
+  background-color: antiquewhite;
 }
 
 .active4 {
-  color: red;
-  background-color: goldenrod;
+  color: goldenrod;
+  background-color: rgb(77, 146, 92);
 }
 
 .active5 {
-  color: red;
-  background-color: aqua;
+  color: aqua;
+  background-color: slategrey;
+}
+
+.hotStyle {
+  color: greenyellow;
+}
+
+.circleStyle {
+  color: green;
+}
+
+.weatStyle {
+ color: wheat;
+}
+
+.harmfulStyle {
+  color: darkorange;
+}
+
+.bigStyle {
+  color: goldenrod;
+}
+
+.buildStyle {
+  color: aqua;
 }
