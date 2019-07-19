@@ -12,63 +12,86 @@ Page({
     content: '干垃圾',
     message: [
       {
-        id: '0',
+        id: '1149885783951450114',
+        cid: "0",
         text: "干垃圾",
         typeStyle: "hotStyle"
       },
       {
-        id: '1',
+        id: '1149885784190525442',
+        cid: "1",
         text: '可回收物',
         typeStyle: "circleStyle"
       },
       {
-        id: '2',
+        id: '1149885784354103297',
+        cid: "2",
         text: '湿垃圾',
         typeStyle: "weatStyle"
 
       },
       {
-        id: '3',
+        id: '1149886649873944578',
+        cid: "3",
         text: '有害垃圾',
         typeStyle: "harmfulStyle"
       }, {
-        id: '4',
+        id: '1149886650196905986',
+        cid: "4",
         text: '大件垃圾',
         typeStyle: "bigStyle"
       }, {
-        id: '5',
+        id: '1149895870229204993',
+        cid:"5",
         text: '建筑垃圾',
         typeStyle: "buildStyle"
       }
       
     ],
     searchResult:[
-      {
-        order: 1,
-        name: '被丢弃的灯泡',
-        type: '有害垃圾',
-        typeStyle: 'harmfulStyle'
-      },
-      {
-        order: 2,
-        name: '塑料桶',
-        type: '可回收垃圾',
-        typeStyle: 'circleStyle'
-      }
     ]
   },
   clickList: function (e) {
-    console.log(e)
+    wx.showToast({
+      title: '数据加载中',
+      icon: 'loading',
+      duration: 3000
+    });
+    this.setData({
+      num: -1
+    })
+    var that = this;
     let num = e.target.id
     console.log(num)
-    let content = this.data.message[num].text
-    console.log(content.text)
     this.setData({
-      num: num,
-      content: content,
-      searchResult: []
+      num: num
     })
-    console.log(this)
+    let id = e.target.id;
+    wx.request({
+      url: 'https://joneyancode.cn:8088/garbage/search',
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        'typeId': id,
+        'searchType': 'type_id'
+      },
+      success(res) {
+        wx.showToast({
+          title: '已完成',
+          icon: 'success',
+          duration: 3000
+        });
+        console.log(res);
+        let backArray = res.data.data.garbageSearchVOS;
+        console.log(backArray);
+        that.setData({
+          searchResult: backArray
+        });
+      }
+    })
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -142,22 +165,54 @@ Page({
     });
   },
   searchGarbage: function (e) {
-
+    wx.showToast({
+      title: '数据加载中',
+      icon: 'loading',
+      duration: 3000
+    });
     this.setData({
       num:-1
     })
+    var that =this;
     wx.request({
-      url: 'http://joneyancode.cn',
+      url: 'https://joneyancode.cn:8088/garbage/search',
+      method:'POST',
       header: {
         'content-type':'application/json'
       },
       data:{
-        'keyWord':e.detail.value
+        'keyWord':e.detail.value,
+        'searchType':'key_word'
       },
       success(res){
+        wx.showToast({
+          title: '已完成',
+          icon: 'success',
+          duration: 3000
+        });
         console.log(res);
+        let backArray = res.data.data.garbageSearchVOS;
+        console.log(backArray);
+        that.setData({
+          searchResult:backArray
+        });
       }
     })
+  },
+  
+  openToast: function () {
+    wx.showToast({
+      title: '已完成',
+      icon: 'success',
+      duration: 500
+    });
+  },
+  openLoading: function () {
+    wx.showToast({
+      title: '数据加载中',
+      icon: 'loading',
+      duration: 3000
+    });
   }
 })
 // Page({

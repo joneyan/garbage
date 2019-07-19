@@ -1,0 +1,5 @@
+<!--pages/wait/wait.wxml-->
+<view class="imageStyle">
+    <image src="../../pages/images/zk.png" ></image>
+    <text class="textStyle" >正在努力开发中，请耐心等耐！</text>
+</view>

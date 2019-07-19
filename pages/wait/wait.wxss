@@ -1,0 +1,14 @@
+/* pages/wait/wait.wxss */
+page{
+  height: 100%
+}
+
+.imageStyle{
+  width: 50%;
+  height: 50%;
+}
+
+.textStyle{
+  text-align: center;
+  justify-content: center;
+}
