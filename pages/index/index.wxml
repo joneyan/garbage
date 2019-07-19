@@ -24,12 +24,12 @@
       {{item.text}}</view>
     </view>
     <view class="weui-cells weui-cells_after-title content">
-      <view class="weui-cells weui-cells_after-title">
+      <scroll-view scroll-y style="height: 100%;" class="weui-cells weui-cells_after-title" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
         <view wx:for="{{searchResult}}" class="weui-cell">
           <view class="weui-cell__bd">{{index+1}}.{{item.name}}</view>
           <view class="weui-cell__fd {{item.typeStyle}}">{{item.typeName}}</view>
         </view>
-      </view>
+      </scroll-view>
     </view>
   </view>
 
