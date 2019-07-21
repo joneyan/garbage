@@ -78,14 +78,12 @@ Page({
         'searchType': 'type_id'
       },
       success(res) {
-        wx.showToast({
-          title: '已完成',
-          icon: 'success',
-          duration: 3000
-        });
         console.log(res);
         let backArray = res.data.data.garbageSearchVOS;
         console.log(backArray);
+        wx.hideToast({
+
+        });
         that.setData({
           searchResult: backArray
         });
@@ -168,7 +166,7 @@ Page({
     wx.showToast({
       title: '数据加载中',
       icon: 'loading',
-      duration: 3000
+      duration:3000
     });
     this.setData({
       num:-1
@@ -185,11 +183,7 @@ Page({
         'searchType':'key_word'
       },
       success(res){
-        wx.showToast({
-          title: '已完成',
-          icon: 'success',
-          duration: 3000
-        });
+        wx.hideToast({});
         console.log(res);
         let backArray = res.data.data.garbageSearchVOS;
         console.log(backArray);
